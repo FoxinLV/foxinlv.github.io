@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Foxin — портфолио направлений</title>
+    <meta
+      name="description"
+      content="Foxin — портфолио трех направлений: Workshop, Studio и Aviation."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --thunder: #363436;
+        --flamingo: #d25433;
+        --green: #65a253;
+        --cerulean: #39b1d6;
+        --paper: #f6f3ef;
+        --ink: #201f1d;
+        --muted: #5f5c59;
+        --outline: rgba(54, 52, 54, 0.12);
+        --shadow: 0 30px 70px rgba(26, 24, 23, 0.16);
+        --radius-lg: 28px;
+        --radius-md: 18px;
+        --radius-sm: 12px;
+        --font-display: "Outfit", "MADE Outer Sans", sans-serif;
+        --font-body: "Montserrat", "Outfit", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font-body);
+        color: var(--ink);
+        background: linear-gradient(130deg, #f5f3f0 5%, #f9efe6 48%, #e9f5fb 100%);
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      body::before {
+        background: radial-gradient(
+            circle at 10% 20%,
+            rgba(210, 84, 51, 0.12),
+            transparent 45%
+          ),
+          radial-gradient(circle at 85% 10%, rgba(57, 177, 214, 0.18), transparent 50%),
+          radial-gradient(circle at 70% 85%, rgba(101, 162, 83, 0.16), transparent 55%);
+      }
+
+      body::after {
+        background-image: linear-gradient(
+            90deg,
+            rgba(54, 52, 54, 0.04) 1px,
+            transparent 1px
+          ),
+          linear-gradient(180deg, rgba(54, 52, 54, 0.04) 1px, transparent 1px);
+        background-size: 48px 48px;
+        opacity: 0.5;
+        mix-blend-mode: multiply;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--muted);
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(246, 243, 239, 0.86);
+        border-bottom: 1px solid rgba(54, 52, 54, 0.08);
+        backdrop-filter: blur(14px);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0;
+        gap: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .brand-name {
+        font-family: var(--font-display);
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .brand-tag {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .nav a {
+        position: relative;
+        padding-bottom: 4px;
+      }
+
+      .nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: var(--flamingo);
+        transition: width 0.3s ease;
+      }
+
+      .nav a:hover::after,
+      .nav a:focus-visible::after {
+        width: 100%;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 20px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        font-weight: 600;
+        font-size: 14px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      }
+
+      .btn.primary {
+        background: var(--thunder);
+        color: #fff;
+        box-shadow: 0 12px 24px rgba(54, 52, 54, 0.2);
+      }
+
+      .btn.primary:hover,
+      .btn.primary:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 30px rgba(54, 52, 54, 0.28);
+      }
+
+      .btn.ghost {
+        border-color: rgba(54, 52, 54, 0.24);
+        background: #fff;
+      }
+
+      .btn.ghost:hover,
+      .btn.ghost:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 26px rgba(54, 52, 54, 0.12);
+      }
+
+      .btn.small {
+        padding: 10px 16px;
+        font-size: 13px;
+      }
+
+      .hero {
+        padding: 80px 0 40px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 48px;
+        align-items: center;
+      }
+
+      .hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(32px, 4vw, 50px);
+        line-height: 1.05;
+        margin: 12px 0 16px;
+      }
+
+      .lead {
+        font-size: 18px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 24px;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-bottom: 28px;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .stat-card {
+        padding: 16px;
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid var(--outline);
+      }
+
+      .stat-card strong {
+        font-size: 20px;
+        font-family: var(--font-display);
+      }
+
+      .hero-visual {
+        position: relative;
+        padding: 28px;
+        border-radius: var(--radius-lg);
+        background: #fff;
+        border: 1px solid var(--outline);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .hero-visual::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, rgba(210, 84, 51, 0.1), transparent 45%),
+          linear-gradient(-120deg, rgba(57, 177, 214, 0.1), transparent 45%);
+      }
+
+      .logo-cluster {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(80px, 1fr));
+        gap: 18px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .logo-badge {
+        display: grid;
+        gap: 8px;
+        justify-items: center;
+        text-align: center;
+        padding: 16px;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--outline);
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      .logo-title {
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .logo {
+        width: 60px;
+        height: 80px;
+        background-color: var(--accent);
+        -webkit-mask-image: url("Foxin-Logo.svg");
+        mask-image: url("Foxin-Logo.svg");
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-position: center;
+        mask-position: center;
+      }
+
+      .logo.thunder {
+        --accent: var(--thunder);
+      }
+
+      .logo.workshop {
+        --accent: var(--flamingo);
+      }
+
+      .logo.studio {
+        --accent: var(--green);
+      }
+
+      .logo.aviation {
+        --accent: var(--cerulean);
+      }
+
+      .color-strip {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+      }
+
+      .color-chip {
+        padding: 10px 12px;
+        border-radius: 999px;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .section-header {
+        display: grid;
+        gap: 12px;
+        margin-bottom: 36px;
+      }
+
+      .section-header h2 {
+        font-family: var(--font-display);
+        font-size: clamp(26px, 3vw, 36px);
+        margin: 0;
+      }
+
+      .section-header p {
+        color: var(--muted);
+        max-width: 680px;
+      }
+
+      .company-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 22px;
+      }
+
+      .company-card {
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        background: #fff;
+        border: 1px solid var(--outline);
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        gap: 18px;
+        animation: floatIn 0.8s ease forwards;
+        opacity: 0;
+        --accent: var(--thunder);
+        --accent-soft: rgba(54, 52, 54, 0.12);
+      }
+
+      .company-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top right, var(--accent-soft), transparent 55%);
+        opacity: 0.7;
+      }
+
+      .company-card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .company-card h3 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 22px;
+      }
+
+      .company-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .pill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .pill {
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+        background: rgba(54, 52, 54, 0.08);
+        color: var(--thunder);
+      }
+
+      .company-card .cta-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        color: var(--accent);
+      }
+
+      .company-card.workshop {
+        --accent: var(--flamingo);
+        --accent-soft: rgba(210, 84, 51, 0.2);
+      }
+
+      .company-card.studio {
+        --accent: var(--green);
+        --accent-soft: rgba(101, 162, 83, 0.2);
+      }
+
+      .company-card.aviation {
+        --accent: var(--cerulean);
+        --accent-soft: rgba(57, 177, 214, 0.22);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+      }
+
+      .project-card {
+        padding: 20px;
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.86);
+        border: 1px solid var(--outline);
+        display: grid;
+        gap: 10px;
+        min-height: 180px;
+      }
+
+      .project-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--accent) 0%, #fff 100%);
+        border: 1px solid rgba(54, 52, 54, 0.12);
+      }
+
+      .project-card h4 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .project-meta {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .accent-workshop {
+        --accent: var(--flamingo);
+      }
+
+      .accent-studio {
+        --accent: var(--green);
+      }
+
+      .accent-aviation {
+        --accent: var(--cerulean);
+      }
+
+      .system-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .system-card {
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--outline);
+        background: #fff;
+        display: grid;
+        gap: 12px;
+      }
+
+      .pattern-surface {
+        min-height: 220px;
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(54, 52, 54, 0.1);
+        background-image: linear-gradient(135deg, rgba(210, 84, 51, 0.2), transparent 60%),
+          linear-gradient(315deg, rgba(57, 177, 214, 0.25), transparent 50%),
+          linear-gradient(45deg, rgba(101, 162, 83, 0.18), transparent 60%),
+          repeating-linear-gradient(
+            90deg,
+            rgba(54, 52, 54, 0.08),
+            rgba(54, 52, 54, 0.08) 14px,
+            transparent 14px,
+            transparent 28px
+          );
+        background-size: cover;
+      }
+
+      .contact-card {
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--outline);
+        background: var(--thunder);
+        color: #fff;
+        display: grid;
+        gap: 12px;
+      }
+
+      .contact-card .btn.ghost {
+        color: var(--thunder);
+        border-color: rgba(255, 255, 255, 0.6);
+      }
+
+      .footer {
+        padding: 40px 0 60px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      @keyframes floatIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .company-card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+
+      .company-card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .company-card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+
+      @media (max-width: 900px) {
+        .nav {
+          display: none;
+        }
+        .hero {
+          padding-top: 50px;
+        }
+        .logo-cluster {
+          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top">
+          <span class="logo thunder" aria-hidden="true"></span>
+          <div>
+            <span class="brand-name">Foxin</span>
+            <span class="brand-tag">Aviation · Workshop · Studio</span>
+          </div>
+        </a>
+        <nav class="nav">
+          <a href="#companies">Направления</a>
+          <a href="#projects">Проекты</a>
+          <a href="#system">Система</a>
+          <a href="#contacts">Контакты</a>
+        </nav>
+        <a class="btn small primary" href="#contacts">Связаться</a>
+      </div>
+    </header>
+
+    <main id="top" class="container">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Портфолио бренда</p>
+          <h1>Foxin соединяет мастерство, дизайн и авиацию в одну систему.</h1>
+          <p class="lead">
+            Три направления работают как единая экосистема: Studio формирует визуальный язык,
+            Workshop создает вещи руками, а Aviation развивает продукты и программу вокруг
+            авиационной тематики.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#companies">Смотреть направления</a>
+            <a class="btn ghost" href="#projects">Подборка проектов</a>
+          </div>
+          <div class="stats">
+            <div class="stat-card">
+              <strong>3 направления</strong>
+              <div>единая эстетика и логика</div>
+            </div>
+            <div class="stat-card">
+              <strong>Foxin System</strong>
+              <div>паттерны и цветовые коды</div>
+            </div>
+            <div class="stat-card">
+              <strong>Гибкие сайты</strong>
+              <div>каждое направление со своим домом</div>
+            </div>
+          </div>
+          <div class="color-strip">
+            <div class="color-chip" style="background: #363436">
+              Thunder <span>#363436</span>
+            </div>
+            <div class="color-chip" style="background: #d25433">
+              Flamingo <span>#D25433</span>
+            </div>
+            <div class="color-chip" style="background: #65a253">
+              Chateau <span>#65A253</span>
+            </div>
+            <div class="color-chip" style="background: #39b1d6">
+              Cerulean <span>#39B1D6</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="logo-cluster">
+            <div class="logo-badge">
+              <span class="logo workshop" aria-hidden="true"></span>
+              <span class="logo-title">Workshop</span>
+            </div>
+            <div class="logo-badge">
+              <span class="logo studio" aria-hidden="true"></span>
+              <span class="logo-title">Studio</span>
+            </div>
+            <div class="logo-badge">
+              <span class="logo aviation" aria-hidden="true"></span>
+              <span class="logo-title">Aviation</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="companies" class="section">
+        <div class="section-header">
+          <p class="eyebrow">Направления</p>
+          <h2>Каждое направление автономно, но живет в общей системе Foxin.</h2>
+          <p>
+            Для каждого бренда — свой сайт и своя подача, а общая визуальная логика и паттерны
+            связывают проекты в единое портфолио.
+          </p>
+        </div>
+        <div class="company-grid">
+          <article class="company-card workshop">
+            <div class="pill-list">
+              <span class="pill">Мастерская</span>
+              <span class="pill">Физические объекты</span>
+            </div>
+            <h3>Foxin Workshop</h3>
+            <p>
+              Производство, прототипы и формы. Мастерская ведет на отдельный сайт, где собраны
+              изделия, материалы и процесс.
+            </p>
+            <div class="pill-list">
+              <span class="pill">Лазерная резка</span>
+              <span class="pill">Сборка</span>
+              <span class="pill">Эксперименты</span>
+            </div>
+            <a class="cta-link" href="#">Перейти на сайт мастерской →</a>
+          </article>
+
+          <article class="company-card studio">
+            <div class="pill-list">
+              <span class="pill">Дизайн</span>
+              <span class="pill">3D формы</span>
+            </div>
+            <h3>Foxin Studio</h3>
+            <p>
+              Визуальные решения, графика и цифровые проекты. Здесь рождается стиль и несколько
+              смежных направлений.
+            </p>
+            <div class="pill-list">
+              <span class="pill">Айдентика</span>
+              <span class="pill">Сценография</span>
+              <span class="pill">UI/UX</span>
+            </div>
+            <a class="cta-link" href="#">Перейти на сайт студии →</a>
+          </article>
+
+          <article class="company-card aviation">
+            <div class="pill-list">
+              <span class="pill">Техника</span>
+              <span class="pill">Программа</span>
+            </div>
+            <h3>Foxin Aviation</h3>
+            <p>
+              Авиационные проекты, концепты и прикладные продукты. Отдельный сайт и отдельная
+              программа для авиационного направления.
+            </p>
+            <div class="pill-list">
+              <span class="pill">Радар</span>
+              <span class="pill">Навигация</span>
+              <span class="pill">Интерфейсы</span>
+            </div>
+            <a class="cta-link" href="#">Перейти на сайт Aviation →</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="section-header">
+          <p class="eyebrow">Подборка проектов</p>
+          <h2>Разные форматы, один язык.</h2>
+          <p>
+            Несколько примеров из разных направлений, чтобы показать масштаб и разнообразие
+            портфолио.
+          </p>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card accent-workshop">
+            <div class="project-icon"></div>
+            <span class="project-meta">Workshop</span>
+            <h4>Лазерная резка и сборка прототипов</h4>
+            <p>Мастерские эксперименты и детали для новых форм.</p>
+          </article>
+          <article class="project-card accent-workshop">
+            <div class="project-icon"></div>
+            <span class="project-meta">Workshop</span>
+            <h4>Физические объекты и коллекции</h4>
+            <p>Серия изделий, которые рассказывают о бренде тактильно.</p>
+          </article>
+          <article class="project-card accent-studio">
+            <div class="project-icon"></div>
+            <span class="project-meta">Studio</span>
+            <h4>Геометрические паттерны и 3D сцены</h4>
+            <p>Паттерны и визуальные композиции для цифровых проектов.</p>
+          </article>
+          <article class="project-card accent-studio">
+            <div class="project-icon"></div>
+            <span class="project-meta">Studio</span>
+            <h4>UI системы и интерфейсные макеты</h4>
+            <p>Смелая типографика, сетки и модульная логика.</p>
+          </article>
+          <article class="project-card accent-aviation">
+            <div class="project-icon"></div>
+            <span class="project-meta">Aviation</span>
+            <h4>Навигационная программа</h4>
+            <p>Программа для авиационной тематики и интерфейсы пилота.</p>
+          </article>
+          <article class="project-card accent-aviation">
+            <div class="project-icon"></div>
+            <span class="project-meta">Aviation</span>
+            <h4>Концепты приборных панелей</h4>
+            <p>Графика, символы и анализ данных в полете.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="system" class="section">
+        <div class="section-header">
+          <p class="eyebrow">Система</p>
+          <h2>Паттерны и модульность, которые объединяют бренды.</h2>
+          <p>
+            Для каждого направления используется общая сетка и паттерн, в который вплетаются
+            уникальные элементы. Так бренды читаются по-разному, но ощущаются единым семейством.
+          </p>
+        </div>
+        <div class="system-grid">
+          <div class="system-card">
+            <h3>Логика форм</h3>
+            <p>
+              Все паттерны построены на геометрии и формах лисы, поэтому визуальные элементы
+              связаны между собой даже в разных отраслях.
+            </p>
+          </div>
+          <div class="system-card">
+            <h3>Цветовые коды</h3>
+            <p>
+              Thunder — фундамент, Flamingo, Chateau и Cerulean задают характер каждому
+              направлению и помогают быстро отличать их.
+            </p>
+          </div>
+          <div class="system-card">
+            <h3>Паттерн-матрица</h3>
+            <div class="pattern-surface" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacts" class="section">
+        <div class="section-header">
+          <p class="eyebrow">Контакты</p>
+          <h2>Связь и переходы на сайты направлений.</h2>
+          <p>Подготовим правильные ссылки и актуальные контакты для всех подразделений.</p>
+        </div>
+        <div class="system-grid">
+          <div class="contact-card">
+            <h3>Общий контакт Foxin</h3>
+            <p>Для запросов по сотрудничеству и портфолио.</p>
+            <a class="btn ghost" href="mailto:hello@foxin.team">hello@foxin.team</a>
+          </div>
+          <div class="system-card">
+            <h3>Сайты направлений</h3>
+            <p>Добавьте реальные ссылки на Workshop, Studio и Aviation.</p>
+            <div class="pill-list">
+              <span class="pill">Workshop — ссылка</span>
+              <span class="pill">Studio — ссылка</span>
+              <span class="pill">Aviation — ссылка</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer container">
+      Foxin © Портфолио бренда. Система, которая объединяет мастерство, дизайн и авиацию.
+    </footer>
+  </body>
+</html>

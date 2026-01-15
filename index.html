@@ -590,6 +590,125 @@
         }
       }
 
+      @media (max-width: 720px) {
+        .header-inner {
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+
+        .brand {
+          flex: 1 1 auto;
+          min-width: 0;
+        }
+
+        .brand-name {
+          font-size: 18px;
+        }
+
+        .brand-tag {
+          font-size: 11px;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          padding: 48px 0 28px;
+        }
+
+        .hero h1 {
+          font-size: clamp(28px, 7vw, 36px);
+        }
+
+        .lead {
+          font-size: 16px;
+        }
+
+        .cta-row {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .cta-row .btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-visual {
+          padding: 20px;
+        }
+
+        .logo-cluster {
+          grid-template-columns: repeat(2, minmax(120px, 1fr));
+        }
+
+        .section {
+          padding: 52px 0;
+        }
+
+        .section-header {
+          margin-bottom: 26px;
+        }
+
+        .company-grid,
+        .projects-grid,
+        .system-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .project-card {
+          min-height: auto;
+        }
+
+        .color-strip {
+          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        }
+      }
+
+      @media (max-width: 520px) {
+        .container {
+          width: min(1120px, 90vw);
+        }
+
+        .btn {
+          padding: 11px 18px;
+        }
+
+        .hero h1 {
+          font-size: clamp(26px, 8vw, 32px);
+        }
+
+        .stat-card strong {
+          font-size: 18px;
+        }
+
+        .logo {
+          width: 52px;
+          height: 68px;
+        }
+
+        .logo-badge {
+          padding: 12px;
+        }
+
+        .logo-title {
+          font-size: 13px;
+        }
+
+        .company-card,
+        .project-card,
+        .system-card,
+        .contact-card {
+          padding: 18px;
+        }
+
+        .footer {
+          padding: 32px 0 48px;
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         * {
           animation: none !important;

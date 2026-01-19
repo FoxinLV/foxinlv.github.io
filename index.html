@@ -457,6 +457,30 @@
         gap: 18px;
       }
 
+      .games-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .games-grid .project-card {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 24px;
+        min-height: 240px;
+      }
+
+      .games-grid .project-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .games-grid .btn {
+        margin-top: auto;
+        align-self: stretch;
+      }
+
       .project-card {
         padding: 20px;
         border-radius: var(--radius-md);
@@ -668,6 +692,15 @@
           grid-template-columns: 1fr;
         }
 
+        .games-grid {
+          gap: 18px;
+        }
+
+        .games-grid .project-card {
+          padding: 20px;
+          min-height: auto;
+        }
+
         .project-card {
           min-height: auto;
         }
@@ -711,6 +744,10 @@
         .project-card,
         .system-card,
         .contact-card {
+          padding: 18px;
+        }
+
+        .games-grid .project-card {
           padding: 18px;
         }
 
@@ -932,50 +969,33 @@
             Небольшая подборка игровых проектов студии с доступом к актуальным версиям.
           </p>
         </div>
-        <div class="projects-grid">
+        <div class="projects-grid games-grid">
           <article class="project-card accent-studio">
             <div class="project-icon" aria-hidden="true"></div>
             <span class="project-meta">Foxin Studio</span>
             <h4>Игра 2048</h4>
             <p>Классическая логическая головоломка с объединением плиток до 2048.</p>
-            <a
-              class="btn small ghost"
-              href="https://foxinlv.github.io/BAS-2048/"
-              target="_blank"
-              rel="noopener"
-            >
+            <a class="btn small ghost" href="https://foxinlv.github.io/BAS-2048/" target="_blank" rel="noopener">
               Играть
             </a>
           </article>
-          
+
           <article class="project-card accent-studio">
             <div class="project-icon" aria-hidden="true"></div>
             <span class="project-meta">Foxin Studio</span>
             <h4>Змейка</h4>
             <p>Классическая логическая аркада про змейку, где игрок управляет движением персонажа на ограниченном поле. <br> Задача — аккуратно направлять змейку, собирать объекты, увеличивать её длину и избегать столкновений со стенами и собственным хвостом.<br> Игра строится на простых правилах, но требует концентрации, планирования траектории и точного расчёта каждого шага.</p>
-            <a
-              class="btn small ghost"
-              href="https://foxinlv.github.io/Foxin-TheSnake"
-              target="_blank"
-              rel="noopener"
-            >
+            <a class="btn small ghost" href="https://foxinlv.github.io/Foxin-TheSnake" target="_blank" rel="noopener">
               Играть
             </a>
           </article>
-        </div>
-        <div class="projects-grid">
-          
+
           <article class="project-card accent-studio">
             <div class="project-icon" aria-hidden="true"></div>
             <span class="project-meta">Foxin Studio</span>
             <h4>Тетрис</h4>
             <p>Тетрис — головоломка, где нужно складывать падающие фигурки в линии без пробелов: линии исчезают, очки растут, скорость увеличивается.</p>
-            <a
-              class="btn small ghost"
-              href="https://foxinlv.github.io/Tetris"
-              target="_blank"
-              rel="noopener"
-            >
+            <a class="btn small ghost" href="https://foxinlv.github.io/Tetris" target="_blank" rel="noopener">
               Играть
             </a>
           </article>
